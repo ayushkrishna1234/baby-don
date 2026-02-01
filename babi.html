@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Avni!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            background-color: #fff5f5;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #feb2b2;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #fed7d7;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        #noBtn {
+            transition: all 0.2s ease;
+        }
+
+        .heart-main {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        .gif-asset {
+            width: 100%;
+            max-width: 240px;
+            border-radius: 20px;
+            margin: 0 auto;
+            border: 4px solid #fecaca;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+
+        .img-container {
+            background: #ffebeb;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #f472b6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fallback-text {
+            font-size: 4rem;
+            animation: heartbeat 1s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Background Hearts -->
+    <div id="heartContainer"></div>
+
+    <div class="card max-w-md w-full rounded-3xl p-8 text-center relative z-10">
+        <!-- START CONTENT -->
+        <div id="mainContent">
+            <div class="heart-main text-6xl mb-6">❤️</div>
+            <h1 class="cursive text-4xl md:text-5xl text-pink-600 mb-2">Happy Valentine's Day,</h1>
+            <h2 class="cursive text-3xl text-pink-500 mb-4">Avni (My Babi Don)</h2>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+                You're the boss of my heart. Will you be my Valentine?
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center relative min-h-[100px]">
+                <button id="yesBtn" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-110 active:scale-95 w-32 z-20">
+                    YES!
+                </button>
+                <button id="noBtn" class="bg-gray-200 text-gray-700 font-bold py-3 px-8 rounded-full shadow-md w-32 z-10">
+                    No
+                </button>
+            </div>
+        </div>
+
+        <!-- YES SUCCESS STATE (With Happy GIF) -->
+        <div id="successContent" class="hidden">
+            <div class="mb-4 flex justify-center img-container">
+                <div class="loader" id="yesLoader"></div>
+                <!-- Happy Peach Goma Kiss GIF -->
+                <img src=https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGxsc2JhM3V0dWMzbWl1c3NqN285MWhoc3FoMjVhdG5yeHlua3FjNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ndAvMC5LFPNMCzq7m/giphy.gif
+                     onload="document.getElementById('yesLoader').style.display='none'"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block'; document.getElementById('yesLoader').style.display='none'"
+                     alt="Happy Dog" class="gif-asset">
+                <div class="fallback-text hidden">🥳🐶</div>
+            </div>
+            <h1 class="cursive text-5xl text-pink-600 mb-2 italic">BABY YEAAAH!!</h1>
+            <h2 class="cursive text-3xl text-pink-500 mb-2">umhaaaa i lob uhh babi don</h2>
+            <p class="text-gray-600 text-lg mb-6 italic font-semibold text-pink-400">umhaaaaa muaaah 🍑</p>
+            <div class="bg-pink-100 p-4 rounded-2xl text-pink-700 font-bold text-xl">
+                AVNI + VALENTINE = ❤️
+            </div>
+        </div>
+
+        <!-- NO STATE (With Sad GIF) -->
+        <div id="failureContent" class="hidden">
+            <div class="mb-4 flex justify-center img-container">
+                <div class="loader" id="noLoader"></div>
+                <!-- Sad Crying Dog/Cat GIF -->
+                <img src=https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3Y5NnZieDBjN3JyNmFkZjRkemU1Y2d2NzJ4Z2t3N2J0YzU2NTFmZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FY8c5SKwiNf1EtZKGs/giphy.gif
+                     onload="document.getElementById('noLoader').style.display='none'"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block'; document.getElementById('noLoader').style.display='none'"
+                     alt="Sad Dog" class="gif-asset">
+                <div class="fallback-text hidden">😿💔</div>
+            </div>
+            <h1 class="cursive text-4xl text-gray-700 mb-2">nice babes nice well done</h1>
+            <p class="text-gray-600 mb-6 italic font-medium">aaj muje ptah chlgya</p>
+            
+            <button id="retryBtn" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all w-full mb-2 text-sm leading-snug">
+                ohhhhh hnn bologe toh tum 4'1 ni 5'1 ho (Yes)
+            </button>
+            <p class="text-xs text-gray-400">Click the button above to make the dog happy again.</p>
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.opacity = Math.random();
+            document.getElementById('heartContainer').appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+
+        setInterval(createHeart, 300);
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const retryBtn = document.getElementById('retryBtn');
+        const mainContent = document.getElementById('mainContent');
+        const successContent = document.getElementById('successContent');
+        const failureContent = document.getElementById('failureContent');
+
+        let noClickCount = 0;
+
+        function moveButton() {
+            if (noClickCount < 8) {
+                noClickCount++;
+                const x = (Math.random() - 0.5) * 300; 
+                const y = (Math.random() - 0.5) * 300;
+                noBtn.style.transform = `translate(${x}px, ${y}px)`;
+                const phrases = ["No", "Are you sure?", "Think again!", "Babi Don pls", "Click Yes!", "You're mean!", "Last chance!", "Fine, click it..."];
+                noBtn.innerText = phrases[Math.min(noClickCount, phrases.length - 1)];
+                yesBtn.style.transform = `scale(${1 + (noClickCount * 0.15)})`;
+            }
+        }
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            if (noClickCount < 8) { e.preventDefault(); moveButton(); }
+        });
+
+        noBtn.addEventListener('click', () => {
+            mainContent.classList.add('hidden');
+            failureContent.classList.remove('hidden');
+        });
+
+        [yesBtn, retryBtn].forEach(btn => {
+            btn.addEventListener('click', () => {
+                mainContent.classList.add('hidden');
+                failureContent.classList.add('hidden');
+                successContent.classList.remove('hidden');
+                for(let i=0; i<100; i++) { setTimeout(createHeart, i * 30); }
+            });
+        });
+    </script>
+</body>
+</html>
